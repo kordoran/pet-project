@@ -1,0 +1,30 @@
+nav {
+    height: 65px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 25px;
+
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+
+    .left, .right {
+        padding: 16px 5px;
+        width: 250px;
+    }
+
+    .left {
+        a {
+            margin: 5px;
+            font-weight: 700;
+
+            &:hover {
+                color: #00159f;
+            }
+        }
+    }
+
+    img {
+        height: 54px;
+    }
+}
