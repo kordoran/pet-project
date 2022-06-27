@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const auth = require("../middlewares/auth");
 const User = require("../models/user");
+const Item = require("../models/user");
 
 router.get("/", auth({ block: true }), async (req, res) => {
   const user = await User.findById(res.locals.user.userId);
@@ -32,6 +33,25 @@ router.post("/", (req, res) => {
   /*
         create dashboard for a user, send created id
     */
+});
+
+router.post("/item/:id", auth({ block: true }), async (req, res) => {
+  if (!req.body?.username) return res.sendStatus(400);
+  const item = await Item.create({
+    itemType,
+    artist,
+    albumTitle,
+    releaseYear,
+    recordLabel,
+    placeOfRelease,
+    UPC,
+    dateOfUpdate,
+    shippingAvailable,
+    personalExchangeAvailable,
+    isFrozen,
+  });
+
+  res.json({ item });
 });
 
 router.post("/:id/items", (req, res) => {

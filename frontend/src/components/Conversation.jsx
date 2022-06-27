@@ -1,7 +1,25 @@
+import axios from "axios";
 import React from "react";
+import { useState, useEffect } from "react";
 import "./Conversation.scss";
 
-function Conversation() {
+function Conversation({ conversation, currentUser }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const friendId = conversation.members.find((m) => m !== currentUser.userId);
+
+    const getUser = async () => {
+      try {
+        const res = await axios("/users?userId=" + friendId);
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, [currentUser, conversation]);
+
   return (
     <div className="conversation">
       <img

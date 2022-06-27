@@ -1,0 +1,81 @@
+.landing-page {
+    margin-top: 65px;
+
+    .hero-img {
+        position: relative;
+
+        img {
+            height: 80vh;
+            width: 100vw;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+
+            font-family: 'Arvo', serif;
+            color: #fff;
+            
+            h1 {
+                font-size: 40px;
+            }
+
+            h4 {
+                margin: 16px;
+
+                font-family: 'Roboto', sans-serif;
+                font-size: 25px;
+                max-width: 550px;
+            }
+
+            .search-container {
+                display: flex;
+
+                input {
+                    width: 450px;
+                    height: 50px;
+                    padding: 15px 20px;
+                    border-radius: 25px;
+
+                    font-size: 15px;
+
+                    background-color: #fff;
+                }
+
+                .search-btn {
+                    margin-left: 20px;
+                    padding: 10px 20px;
+                    border: 2px solid #fff;
+                    border-radius: 25px;
+                }
+            }
+
+            .auth-btn {
+                margin-top: 25px;
+                padding: 15px 25px 15px 15px;
+                width: 300px;
+                border: 2px solid #fff;
+                border-radius: 25px;
+                text-align: right;
+
+                position: relative;
+
+                span {
+                    position: absolute;
+                    left: 25px;
+                    font-size: 15px;
+                }
+
+                &:hover {
+                    color: #000;
+                    border: 2px solid #000;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+
+}

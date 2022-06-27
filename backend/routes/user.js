@@ -96,6 +96,7 @@ router.post("/create", auth({ block: true }), async (req, res) => {
   const user = await User.create({
     username: req.body.username,
     providers: res.locals.user.providers,
+    currentCity: req.body.currentCity,
   });
 
   const token = jwt.sign(

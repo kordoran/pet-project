@@ -1,7 +1,7 @@
 import React from "react";
 import "./Message.scss";
 
-const Message = ({ own }) => {
+const Message = ({ message, own }) => {
   return (
     <div className={own ? "message own" : "message"}>
       <div className="message-top">
@@ -10,9 +10,9 @@ const Message = ({ own }) => {
           alt="message_image"
           className="message-img"
         />
-        <p className="message-text">Hello this is a message!</p>
+        <p className="message-text">{message.text}</p>
       </div>
-      <div className="message-bottom">1 hour ago</div>
+      <div className="message-bottom">{message.createdAt}</div>
     </div>
   );
 };

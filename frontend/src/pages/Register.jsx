@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
+  const [currentCity, setCurrentCity] = useState("");
   const navigate = useNavigate();
   const { register, user } = useAuth();
 
   useEffect(() => {
     console.log(user);
-    if (user.userId) navigate('/profile')
-}, [user, navigate])
+    if (user.userId) navigate("/profile");
+  }, [user, navigate]);
 
   return (
     <>
@@ -23,7 +24,13 @@ const Register = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <button onClick={() => register(username)}>Register</button>
+      <input
+        type="text"
+        placeholder="current city"
+        value={currentCity}
+        onChange={(e) => setCurrentCity(e.target.value)}
+      />
+      <button onClick={() => register(username, currentCity)}>Register</button>
     </>
   );
 };

@@ -3,7 +3,7 @@ require("express-async-errors");
 const cors = require("cors");
 const auth = require("./middlewares/auth");
 const errorhandler = require("./middlewares/errorhandler");
-const dashboardRoutes = require("./routes/dashboard.js");
+const itemRoutes = require("./routes/item.js");
 const messageRoutes = require("./routes/messages.js");
 const conversationRoutes = require("./routes/conversation.js");
 const userRoutes = require("./routes/user.js");
@@ -26,7 +26,7 @@ app.use(
   )
 );
 
-app.use("/api/dashboards", dashboardRoutes);
+app.use("/api/items", itemRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/conversations", conversationRoutes);

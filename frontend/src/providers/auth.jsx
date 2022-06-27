@@ -58,8 +58,8 @@ const AuthProvider = ({ children }) => {
     setToken(null);
   };
 
-  const register = async (username) => {
-    const response = post("/user/create", { username });
+  const register = async (username, currentCity) => {
+    const response = post("/user/create", { username, currentCity });
     if (response?.status === 200) {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);

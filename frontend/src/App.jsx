@@ -17,7 +17,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/callback" element={<Callback />} />
         <Route path="/about" element={<About />} />
-        <Route path="/messenger" element={<Messenger />} />
         <Route
           path="/profile"
           element={
@@ -31,6 +30,14 @@ function App() {
           element={
             <Protected>
               <Register />
+            </Protected>
+          }
+        />
+        <Route
+          path="/messenger"
+          element={
+            <Protected>
+              <Messenger />
             </Protected>
           }
         />
