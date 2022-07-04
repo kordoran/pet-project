@@ -1,0 +1,84 @@
+.item-page-content {
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10vw;
+    justify-content: center;
+    
+    .item-page-left-container {
+        img.album-cover {
+            height: 500px;
+            width: 500px;
+        }
+
+    }
+
+    .item-page-right-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: right;
+        color: #fff;
+
+        h1 {
+            font-size: 65px;
+            font-weight: 400;
+            font-family: "Arvo", serif;
+        }
+        
+        h3 {
+            font-weight: 300;
+            font-size: 40px;
+        }
+        
+        h5 {
+            font-weight: 400;
+            font-size: 25px;
+        }
+        
+        div.type-tag {
+            flex-direction: row;
+            display: flex;
+            justify-content: flex-end;
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+            
+            p {
+                padding: 5px;
+                align-self: flex-end;
+                
+                border-radius: 5px;
+                color: #969696;
+                background-color: #fff;
+            }
+        }
+        
+        .price-text {
+            margin: 15px 0 15px;
+            font-size: 30px;
+            font-family: "Arvo", serif;
+        }
+
+
+        div.isavailable-tiles {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            text-transform: uppercase;
+            cursor: default;
+
+            .available-box {
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #00b061;
+            }
+            
+            .unavailable-box {
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #b61535;
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 .profile-submenu {
-    width: 10rem;
+  min-width: 130px;
+    width: 15vw;
     position: absolute;
     top: 40px;
     right: 25px;
@@ -9,12 +10,14 @@
   }
   
   .profile-submenu li {
-    background: rgb(181, 181, 181);
+    background: linear-gradient(90deg, rgba(176,44,0,1) 61%, rgba(238,76,28,1) 120%);
     cursor: pointer;
   }
   
   .profile-submenu li a:hover {
-    background: rgb(143, 143, 143);
+    font-weight: 700;
+    color: #b02c00;
+    background: #fff;
   }
   
   .profile-submenu.clicked {

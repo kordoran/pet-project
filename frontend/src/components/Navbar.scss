@@ -1,12 +1,12 @@
 nav {
+    position: fixed;
+    top: 0;
+
     height: 65px;
     width: 100vw;
     display: flex;
     justify-content: space-between;
     padding: 5px 25px;
-
-    position: absolute;
-    top: 0;
 
     font-family: 'Roboto', sans-serif;
     background-color: white;
@@ -24,7 +24,7 @@ nav {
             font-weight: 700;
 
             &:hover {
-                color: #00159f;
+                color: #ee4c1c;
             }
         }
     }
@@ -39,7 +39,7 @@ nav {
         cursor: pointer;
         
         a {
-            margin: 5px;
+            margin: 0px;
         }
 
         button {

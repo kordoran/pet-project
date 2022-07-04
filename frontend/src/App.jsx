@@ -1,9 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import About from "./pages/About";
+import AllItems from "./pages/AllItems";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Callback from "./pages/Callback";
 import Protected from "./components/Protected";
 import Register from "./pages/Register";
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/callback" element={<Callback />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/all-items" element={<AllItems />} />
         <Route
           path="/profile"
           element={
@@ -42,6 +43,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -1,17 +1,27 @@
 const jwt = require("jsonwebtoken");
 
 const auth = (middlewareParams) => (req, res, next) => {
-    //console.log("authenticating... ");
+  console.log("authenticating... ");
 
-    const token = req.header("authorization");
-    jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
-        if (middlewareParams.block && error) return res.sendStatus(401);
-        res.locals.user = user;
-        next();
+  const token = req.header("authorization");
+  jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+    if (middlewareParams.block && error) return res.sendStatus(401);
+    res.locals.user = user;
+    next();
+  });
+  /* 
+  console.log("authenticating... ");
 
-    });
-
-
+  const token = req.header("authorization");
+  console.log("token in auth: ", token)
+  jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+    if (middlewareParams.block && error) {
+      console.log("error during authentication: ", error);
+      return res.sendStatus(401);
+    }
+    res.locals.user = user;
+    next();
+  }); */
 };
 
 module.exports = auth;

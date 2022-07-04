@@ -1,0 +1,51 @@
+.profile {
+    margin: 65px auto 5px;
+
+    h2 {
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+
+        margin: 0 auto;
+        width: 450px;
+
+        padding: 40px;
+
+        background-color: #fff;
+        
+        .newitem-textinput {
+            color: #b02c00;
+            margin-bottom: 10px;
+        }
+
+        .exchange-container, .shipping-container, .itemtype-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 10px;
+        }
+
+        .itemtype-select {
+            width: 200px;
+        }
+
+        .send-item-btn {
+            height: 50px;
+            margin-top: 15px;
+
+            font-size: 16px;
+
+            color: #fff;
+            background-color: #b02c00;
+
+            &:hover {
+                background-color: #ee4c1c;
+            }
+        }
+    }
+}

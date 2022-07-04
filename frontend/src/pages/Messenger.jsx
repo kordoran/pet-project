@@ -10,26 +10,29 @@ const Messenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();
-
-  console.log(user);
 
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/conversations/" + user.userId);
+        const res = await axios.get(
+          "http://localhost:4000/api/conversations/" + user.userId
+        );
         setConversations(res.data);
       } catch (error) {
         console.log(error);
       }
-      getConversations();
     };
+    getConversations();
   }, [user.userId]);
 
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("/messages" + currentChat._id);
+        const res = await axios.get(
+          "http://localhost:4000/api/messages" + currentChat._id
+        );
         setMessages(res.data);
       } catch (error) {
         console.log(error);
@@ -37,6 +40,25 @@ const Messenger = () => {
     };
     getMessages();
   }, [currentChat]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const message = {
+      sender: user.userId,
+      text: newMessage,
+      conversationId: currentChat._id,
+    };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/messages",
+        message
+      );
+      setMessages([...messages], res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="messenger">
@@ -62,8 +84,12 @@ const Messenger = () => {
                 <textarea
                   className="chat-input"
                   placeholder="Write something"
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  value={newMessage}
                 ></textarea>
-                <button className="submit-btn">Send</button>
+                <button className="submit-btn" onClick={handleSubmit}>
+                  Send
+                </button>
               </div>
             </>
           ) : (

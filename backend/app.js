@@ -49,6 +49,6 @@ app.get("/api/both", auth({ block: false }), (req, res) => {
   res.json(`Hello world public and also private ${res.locals.user.userid} `);
 });
 
-app.use(errorhandler);
+// app.use(errorhandler);
 
 module.exports = app;

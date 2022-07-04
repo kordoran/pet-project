@@ -7,11 +7,14 @@ const Protected = ({ children }) => {
   const location = useLocation();
   //console.log(location);
 
+  console.log("token:", token);
+  console.log("user:", token);
+
   return (
     <>
-      {!token ? (
+      {!token /* ? (
         <Navigate to={"/"} />
-      ) : !user.userId && location.pathname !== "/register" ? (
+      ) : !user.userId && location.pathname !== "/register"  */ ? (
         <Navigate to={"/register"} />
       ) : (
         children

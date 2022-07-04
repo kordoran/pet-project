@@ -6,6 +6,17 @@ const auth = require("../middlewares/auth");
 const config = require("../app.config");
 //const http = httpModule();
 
+/* router.get("/", auth({ block: true }), async (req, res) => {
+  console.log("item route: ", req.locals);
+  const user = await User.findById(res.locals.user.userId);
+  res.json({ user });
+  
+        needs auth middleware
+        find user with userid from res.locals.userid
+        get all dashboards for user
+   
+}); */
+
 router.post("/login", auth({ block: false }), async (req, res) => {
   const payload = req.body;
   if (!payload) return res.sendStatus(400);
@@ -93,19 +104,26 @@ router.post("/login", auth({ block: false }), async (req, res) => {
 
 router.post("/create", auth({ block: true }), async (req, res) => {
   if (!req.body?.username) return res.sendStatus(400);
-  const user = await User.create({
-    username: req.body.username,
-    providers: res.locals.user.providers,
-    currentCity: req.body.currentCity,
-  });
 
-  const token = jwt.sign(
-    { userId: user._id, providers: user.providers },
-    process.env.JWT_SECRET,
-    { expiresIn: "1h" }
-  );
+  try {
+    const newUser = new User({
+      username: req.body.username,
+      providers: res.locals.user.providers,
+      currentCity: req.body.currentCity,
+    });
+    const user = await newUser.save();
 
-  res.json({ token });
+    const token = jwt.sign(
+      { userId: user._id, providers: user.providers },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.json({ token });
+  } catch (error) {
+    console.log("error in saving new user: ", error);
+    return;
+  }
 });
 
 module.exports = router;

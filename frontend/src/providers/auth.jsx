@@ -1,14 +1,14 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
 import jwt from "jwt-decode";
-import { todoapi } from "../api/todoapi";
+import { myApi } from "../api/myApi";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-  const { post } = todoapi();
+  const { post } = myApi();
 
   useEffect(() => {
     const tokenInStorage = localStorage.getItem("token");
@@ -67,7 +67,14 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const contextValue = { token, auth, login, logout, user, register };
+  const contextValue = {
+    token,
+    auth,
+    login,
+    logout,
+    user,
+    register,
+  };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
