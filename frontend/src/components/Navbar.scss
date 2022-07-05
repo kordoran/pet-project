@@ -23,6 +23,7 @@ nav {
         align-items: center;
         a {
             margin: 5px;
+            padding-bottom: 3px;
             font-weight: 700;
             border-bottom: 2px solid #fff;
 
@@ -38,7 +39,9 @@ nav {
     }
 
     .right {
-        text-align: end;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         font-size: 25px;
         cursor: pointer;
         
@@ -47,7 +50,15 @@ nav {
         }
 
         button {
-            font-size: 15px;
+            padding-bottom: 3px;
+            font-size: 16px;
+            font-weight: 700;
+            border-bottom: 2px solid #fff;
+
+            &:hover {
+                color: #ee4c1c;
+                border-bottom: 2px solid #ee4c1c;
+            }
         }
     }
 }

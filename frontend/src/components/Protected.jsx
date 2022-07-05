@@ -12,9 +12,9 @@ const Protected = ({ children }) => {
 
   return (
     <>
-      {!token /* ? (
+      {!token ? (
         <Navigate to={"/"} />
-      ) : !user.userId && location.pathname !== "/register"  */ ? (
+      ) : !user.userId && location.pathname !== "/register" ? (
         <Navigate to={"/register"} />
       ) : (
         children

@@ -13,11 +13,11 @@ export const myApi = () => {
           authorization: localStorage.getItem("token"),
         },
       });
-      //console.log("RESPONSE DATA:", response.data);
+      console.log("RESPONSE DATA:", response.data);
       return response;
     } catch (err) {
-      //console.log(err.response.status);
-      //console.log(err.response.data);
+      console.log("Error status:", err.response?.status);
+      console.log("Error data: ", err.response?.data);
       return err.response;
     }
   };

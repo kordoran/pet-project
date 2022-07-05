@@ -34,7 +34,7 @@ const Register = () => {
               illetve a tartózkodási helyed!
             </h5>
           </div>
-          <form className="reg-form">
+          <div className="reg-form">
             <TextField
               variant="standard"
               label="Felhasználónév"
@@ -54,7 +54,7 @@ const Register = () => {
             <button onClick={() => register(username, currentCity)}>
               Regisztráció
             </button>
-          </form>
+          </div>
         </div>
       </section>
       <img src={vinylCloseup} alt="hero" className="reg-colorfill" />

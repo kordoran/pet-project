@@ -56,13 +56,17 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setToken(null);
+    localStorage.removeItem("token");
   };
 
   const register = async (username, currentCity) => {
-    const response = post("/user/create", { username, currentCity });
+    console.log("Run");
+    const response = await post("/user/create", { username, currentCity });
     if (response?.status === 200) {
+      console.log(response.data.token);
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
+      console.log(jwt(response.data.token));
       setUser(jwt(response.data.token));
     }
   };

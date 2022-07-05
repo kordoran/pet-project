@@ -20,6 +20,7 @@ const Item = ({
 }) => {
   const [items, setItems] = useState([]);
 
+  // csak egy adott itemet kérjen
   useEffect(() => {
     const getAllItems = async () => {
       const resp = await axios.get("http://localhost:4000/api/items/");

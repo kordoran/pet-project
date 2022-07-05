@@ -118,10 +118,10 @@ router.patch("/:id/items/:itemid", (req, res) => {
     */
 });
 
-router.delete("/:id", (req, res) => {
-  /*
-        delete existing dashboard
-    */
+router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await Item.findByIdAndRemove(id).exec();
+  res.send("");
 });
 
 router.delete("/:id/items/:itemid", (req, res) => {

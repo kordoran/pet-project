@@ -6,7 +6,9 @@ import "./Profile.scss";
 const Profile = () => {
   return (
     <div className="profile">
-      <h2>Profilom</h2>
+      <header className="profile-header">
+        <h2>Profilom</h2>
+      </header>
       <UploadItem />
       <GetMyItems />
     </div>
