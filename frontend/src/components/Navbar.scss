@@ -19,12 +19,16 @@ nav {
     }
 
     .left {
+        display: flex;
+        align-items: center;
         a {
             margin: 5px;
             font-weight: 700;
+            border-bottom: 2px solid #fff;
 
             &:hover {
                 color: #ee4c1c;
+                border-bottom: 2px solid #ee4c1c;
             }
         }
     }

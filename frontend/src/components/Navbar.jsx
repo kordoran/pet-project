@@ -20,7 +20,6 @@ const Navbar = () => {
       <div className="left">
         <Link to="/"> Főoldal </Link>
         <Link to="/all-items"> Lemezek </Link>
-        <Link to="/profile"> Újdonságok </Link>
       </div>
       <img src={Logo} alt="Hangbörze Logo" />
       <div className="right">

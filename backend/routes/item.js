@@ -90,10 +90,11 @@ router.post("/", auth({ block: true }), async (req, res) => {
 
 router.get("/:user_id", async (req, res) => {
   try {
-    const items = await Item.find({
+    const myItems = await Item.find({
       user_id: req.params.user_id,
     });
-    res.status(200).json(items);
+    res.status(200).json(myItems);
+    if (!myItems) return res.json("Jelenleg nincs feltöltött lemezed.");
   } catch (error) {
     res.status(500).json(error);
   }
