@@ -117,7 +117,6 @@ router.post("/login", auth({ block: false }), async (req, res) => {
 });
 
 router.post("/create", auth({ block: true }), async (req, res) => {
-  console.log(req.body);
   if (!req.body?.username) return res.sendStatus(400);
 
   try {
@@ -133,8 +132,6 @@ router.post("/create", auth({ block: true }), async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-
-    console.log(token);
 
     res.json({ token });
   } catch (error) {

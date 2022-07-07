@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../providers/auth";
-import axios from "axios";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./UploadItem.scss";
-import { Menu } from "@mui/material";
 
 const UploadItem = () => {
   const { token } = useAuth();
@@ -57,7 +55,6 @@ const UploadItem = () => {
       price,
       coverURL,
       UPC,
-      // dateOfUpdate,
       shippingAvailable,
       personalExchangeAvailable,
     };

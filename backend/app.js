@@ -31,6 +31,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/conversations", conversationRoutes);
 
+app.disable("etag");
+
 app.get("/api/public", (req, res) => {
   console.log("public");
   res.json("Hello world public");

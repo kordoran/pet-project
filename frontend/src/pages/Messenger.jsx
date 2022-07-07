@@ -80,8 +80,8 @@ const Messenger = () => {
           {currentChat ? (
             <>
               <div className="chat-box-top">
-                {messages.map((m) => (
-                  <div ref={scrollRef}>
+                {messages.map((m, i) => (
+                  <div ref={scrollRef} key={i}>
                     <Message message={m} own={m.sender === user.userId} />
                   </div>
                 ))}
@@ -99,7 +99,7 @@ const Messenger = () => {
               </div>
             </>
           ) : (
-            <span>Kezdj el beszélgetni</span>
+            <span>Válassz egy beszélgetést a bal oldali sávból</span>
           )}
         </div>
       </div>

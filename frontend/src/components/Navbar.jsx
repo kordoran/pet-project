@@ -5,23 +5,35 @@ import SmLogo from "../images/vinyl_icon.svg";
 import ProfileDropdown from "./ProfileDropdown";
 import { CgProfile } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../providers/auth";
 import { useState } from "react";
 
 const Navbar = () => {
   const { auth, token } = useAuth();
-  const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
-  const nav = (path) => {
-    //console.log("rerouting..."); // elagazás, ciklusok, bármit meg lehet itt írni, hogy a végén legyen, hogy meghívódik a navigate a path-szal
-    navigate(path);
-  };
+
   return (
     <nav>
       <div className="left">
-        <Link to="/"> Főoldal </Link>
-        <Link to="/all-items"> Lemezek </Link>
+        <NavLink
+          to="/"
+          style={({ isActive }) => ({
+            color: isActive && "#ee4c1c",
+          })}
+        >
+          {" "}
+          Főoldal{" "}
+        </NavLink>
+        <NavLink
+          to="/all-items"
+          style={({ isActive }) => ({
+            color: isActive && "#ee4c1c",
+          })}
+        >
+          {" "}
+          Lemezek{" "}
+        </NavLink>
       </div>
       <Link to="/">
         <img src={Logo} alt="Hangbörze Logo" className="full-logo" />

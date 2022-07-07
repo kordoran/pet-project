@@ -58,6 +58,11 @@
           height: 50px;
           border: 2px solid #fff;
           border-radius: 25px;
+
+          &:hover {
+
+            background-color: #ee4c1c;
+          }
         }
 
         @media screen and (max-width: 725px) {

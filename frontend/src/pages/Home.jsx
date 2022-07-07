@@ -1,11 +1,11 @@
 import React from "react";
 import heroImg from "../images/hero_img.png";
+import { useAuth } from "../providers/auth";
 import "./Home.scss";
 import { ImGoogle3 } from "react-icons/im";
-import { useAuth } from "../providers/auth";
 
 const Home = () => {
-  const { auth, token } = useAuth();
+  const { token, auth } = useAuth();
 
   return (
     <div className="landing-page">

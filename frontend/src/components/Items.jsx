@@ -23,22 +23,10 @@ const Items = () => {
     }
   };
 
-  /*   const characterClickHandler = (e) => {
-    console.log(e.target);
-    setCharacterShow(!characterShow)
-    console.log(characterShow);
-  } */
-
   return items === [] ? (
     <div>Loading...</div>
   ) : (
     <div className="items-all">
-      {/*       <PaginationControlled
-        val={page}
-        page={page}
-        onChange={handlePageChange}
-        pageCount={42}
-      /> */}
       {items.map((item) => (
         <div className="item" key={item._id} id={item._id}>
           <div className="card">
@@ -65,7 +53,6 @@ const Items = () => {
               </div>
             </div>
           </div>
-          {/*  <button onClick={(e) => showMoreInfo(e, character.id)}>Show more!</button> */}
           {itemShow === item._id ? (
             <div className="item-page">
               <AiOutlineClose
@@ -92,12 +79,6 @@ const Items = () => {
           ) : null}
         </div>
       ))}
-      {/*       <PaginationControlled
-        val={page}
-        page={page}
-        onChange={handlePageChange}
-        pageCount={42}
-      /> */}
     </div>
   );
 };

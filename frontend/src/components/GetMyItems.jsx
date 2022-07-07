@@ -20,7 +20,7 @@ const GetMyItems = () => {
       }
     };
     getMyItems();
-  }, []);
+  }, [user.userId]);
 
   const deleteItem = (id) => {
     axios.delete(`http://localhost:4000/api/items/delete/${id}`).then(() => {

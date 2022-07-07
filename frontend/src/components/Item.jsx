@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useAuth } from "../providers/auth";
 import "./Item.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineMessage } from "react-icons/ai";
 
 const Item = ({
   user_id,
@@ -18,16 +21,19 @@ const Item = ({
   personalExchangeAvailable,
   isFrozen,
 }) => {
-  const [items, setItems] = useState([]);
-
-  // csak egy adott itemet kérjen
-  useEffect(() => {
-    const getAllItems = async () => {
-      const resp = await axios.get("http://localhost:4000/api/items/");
-      setItems(resp.data);
-    };
-    getAllItems();
-  }, []);
+  const { user, token } = useAuth();
+  let navigate = useNavigate();
+  const sendMessage = async (senderId, receiverId) => {
+    try {
+      await axios.post("http://localhost:4000/api/conversations", {
+        senderId: senderId,
+        receiverId: receiverId,
+      });
+      navigate("/messenger");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="item-page-content">
@@ -42,6 +48,13 @@ const Item = ({
         <div className="type-tag">
           <p>{itemType}</p>
         </div>
+        {token && user.userId !== user_id && (
+          <div className="send-msg-container">
+            <button onClick={() => sendMessage(user.userId, user_id)}>
+              Üzenet a hirdetőnek <AiOutlineMessage />
+            </button>
+          </div>
+        )}
         <p className="item-page-subtext">Feltöltötte: {user_id}</p>
         <p className="item-page-subtext">
           Feltöltés dátuma: {dateOfUpdate.slice(0, 10)}

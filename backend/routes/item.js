@@ -50,11 +50,9 @@ router.post("/", (req, res) => {
 router.post("/", auth({ block: true }), async (req, res) => {
   //  console.log("request: ", req);
   const userId = req.res.locals.user.userId;
-  const username = req.res.locals.user.username;
 
   const newItem = new Item({
     user_id: userId,
-    username: username,
     itemType: req.body.itemType,
     artist: req.body.artist,
     albumTitle: req.body.albumTitle,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Items from "../components/Items";
 import "./AllItems.scss";
 

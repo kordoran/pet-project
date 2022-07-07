@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema({
   user_id: { type: String, required: true, default: "default_string" },
-  username: { type: String, required: true, default: "default_string" },
   itemType: { type: String, required: true, default: "default_string" },
   artist: { type: String, required: true, default: "default_string" },
   albumTitle: { type: String, required: true, default: "default_string" },
