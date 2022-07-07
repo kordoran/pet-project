@@ -6,16 +6,30 @@ const auth = require("../middlewares/auth");
 const config = require("../app.config");
 //const http = httpModule();
 
-/* router.get("/", auth({ block: true }), async (req, res) => {
+/* router.get("/", auth({ block: false }), async (req, res) => {
   console.log("item route: ", req.locals);
   const user = await User.findById(res.locals.user.userId);
   res.json({ user });
-  
-        needs auth middleware
+
+            needs auth middleware
         find user with userid from res.locals.userid
         get all dashboards for user
-   
 }); */
+
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+
+  try {
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    const { currentCity, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 router.post("/login", auth({ block: false }), async (req, res) => {
   const payload = req.body;

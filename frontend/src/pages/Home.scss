@@ -35,6 +35,7 @@
 
       .search-container {
         display: flex;
+        gap: 20px;
 
         input {
           width: 450px;
@@ -45,14 +46,24 @@
           font-size: 15px;
 
           background-color: #fff;
+
+          @media screen and (max-width: 560px) {
+            width: 75vw;
+        }
         }
 
         .search-btn {
-          margin-left: 20px;
           padding: 10px 20px;
+          width: 100px;
+          height: 50px;
           border: 2px solid #fff;
           border-radius: 25px;
         }
+
+        @media screen and (max-width: 725px) {
+          flex-direction: column;
+          align-items: center;
+      }
       }
 
       .auth-btn {

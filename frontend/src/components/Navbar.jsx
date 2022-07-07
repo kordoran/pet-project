@@ -1,8 +1,10 @@
 import React from "react";
 import "./Navbar.scss";
 import Logo from "../images/logo_nav.svg";
+import SmLogo from "../images/vinyl_icon.svg";
 import ProfileDropdown from "./ProfileDropdown";
 import { CgProfile } from "react-icons/cg";
+import { GrMenu } from "react-icons/gr";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../providers/auth";
 import { useState } from "react";
@@ -21,7 +23,10 @@ const Navbar = () => {
         <Link to="/"> Főoldal </Link>
         <Link to="/all-items"> Lemezek </Link>
       </div>
-      <img src={Logo} alt="Hangbörze Logo" />
+      <Link to="/">
+        <img src={Logo} alt="Hangbörze Logo" className="full-logo" />
+        <img src={SmLogo} alt="Hangbörze Logo" className="small-logo" />
+      </Link>
       <div className="right">
         {!token && !dropdown ? (
           <button onClick={auth}>Bejelentkezés</button>
@@ -30,7 +35,8 @@ const Navbar = () => {
             onMouseEnter={() => setDropdown(true)}
             onMouseLeave={() => setDropdown(false)}
           >
-            <CgProfile />
+            <CgProfile className="profile-icon" />
+            <GrMenu className="hamburger-menu-icon" />
             {dropdown && <ProfileDropdown />}
           </div>
         )}

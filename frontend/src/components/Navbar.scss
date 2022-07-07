@@ -32,10 +32,27 @@ nav {
                 border-bottom: 2px solid #ee4c1c;
             }
         }
-    }
 
-    img {
+        @media screen and (max-width: 725px) {
+            display: none;
+        }
+    }
+    
+    .full-logo {
         height: 54px;
+        
+        @media screen and (max-width: 725px) {
+            display: none;
+        }
+    }
+    
+    .small-logo {
+        display: none;
+        
+        @media screen and (max-width: 725px) {
+            display: unset;
+            height: 54px;
+        }
     }
 
     .right {
@@ -58,6 +75,27 @@ nav {
             &:hover {
                 color: #ee4c1c;
                 border-bottom: 2px solid #ee4c1c;
+            }
+        }
+
+        div {
+
+            &:hover {
+                color: #ee4c1c;
+            }
+
+            .profile-icon {
+
+                @media screen and (max-width: 725px) {
+                    display: none;
+                }
+            }
+            .hamburger-menu-icon {
+                display: none;
+                
+                @media screen and (max-width: 725px) {
+                    display: unset;
+                }
             }
         }
     }

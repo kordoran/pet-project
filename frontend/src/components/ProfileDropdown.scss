@@ -1,5 +1,5 @@
 .profile-submenu {
-  min-width: 130px;
+    min-width: 130px;
     width: 15vw;
     position: absolute;
     top: 40px;
@@ -7,6 +7,13 @@
     padding-top: 25px;
     list-style: none;
     text-align: end;
+
+    @media screen and (max-width: 725px) {
+      width: 250px;
+      right: 0;
+
+      font-size: 25px;
+  }
   }
   
   .profile-submenu li {
@@ -32,4 +39,17 @@
     color: white;
     padding: 16px;
     font-size: 16px;
+
+    @media screen and (max-width: 725px) {
+      padding: 30px;
+  }
+  }
+
+  .dropdown-nav-item.hidden {
+    display: none;
+
+    @media screen and (max-width: 725px) {
+      display: block;
+      padding: 30px;
+  }
   }

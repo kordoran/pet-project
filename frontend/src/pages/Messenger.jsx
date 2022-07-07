@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useAuth } from "../providers/auth";
 import Conversation from "../components/Conversation";
 import Message from "../components/Message";
 import "./Messenger.scss";
-import { useState } from "react";
 import axios from "axios";
 
 const Messenger = () => {
@@ -12,6 +11,7 @@ const Messenger = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();
+  const scrollRef = useRef();
 
   useEffect(() => {
     const getConversations = async () => {
@@ -31,7 +31,7 @@ const Messenger = () => {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/messages" + currentChat._id
+          "http://localhost:4000/api/messages/" + currentChat?._id
         );
         setMessages(res.data);
       } catch (error) {
@@ -60,6 +60,10 @@ const Messenger = () => {
     }
   };
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <section className="messenger">
       <div className="chat-menu">
@@ -77,7 +81,9 @@ const Messenger = () => {
             <>
               <div className="chat-box-top">
                 {messages.map((m) => (
-                  <Message message={m} own={m.sender === user.userId} />
+                  <div ref={scrollRef}>
+                    <Message message={m} own={m.sender === user.userId} />
+                  </div>
                 ))}
               </div>
               <div className="chat-box-bottom">

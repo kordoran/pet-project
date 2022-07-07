@@ -109,24 +109,41 @@
               }
 
               .item-page {
+                display: flex;
+                justify-content: center;
+                align-content: center;
                 width: 100vw;
                 height: 100%;
                 top: 0;
                 left: 0;
                 position: fixed;
                 background-color: #868585ee;
-            
+                
                 z-index: 200;
+                
+                @media screen and (max-width: 1245px) {
+                  overflow-y: scroll;
+                  display: initial;
+              }
 
                 #close-icon {
                     position: absolute;
-                    top: 10px;
-                    right: 10px;
+                    top: 60px;
+                    right: 60px;
                     font-size: 50px;
 
                     cursor: pointer;
                     color: #fff;
                     background-color: #b02c00;
+
+                    &:hover {
+                      background-color: #e83a00;
+                    }
+
+                    @media screen and (max-width: 1245px) {
+                      top: 25px;
+                      right: 25px;
+                  }
                 }
             }
         }

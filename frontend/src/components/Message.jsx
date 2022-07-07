@@ -1,7 +1,12 @@
 import React from "react";
 import "./Message.scss";
+import TimeAgo from "react-timeago";
+import hungarianStrings from "react-timeago/lib/language-strings/hu";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 const Message = ({ message, own }) => {
+  const formatter = buildFormatter(hungarianStrings);
+
   return (
     <div className={own ? "message own" : "message"}>
       <div className="message-top">
@@ -12,7 +17,11 @@ const Message = ({ message, own }) => {
         />
         <p className="message-text">{message.text}</p>
       </div>
-      <div className="message-bottom">{message.createdAt}</div>
+      <TimeAgo
+        className="message-bottom"
+        date={message.createdAt}
+        formatter={formatter}
+      />
     </div>
   );
 };

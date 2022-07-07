@@ -1,18 +1,20 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Conversation.scss";
 
 function Conversation({ conversation, currentUser }) {
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser.userId);
 
     const getUser = async () => {
       try {
         const res = await axios(
-          "http://localhost:4000/api/users?userId=" + friendId
+          "http://localhost:4000/api/user?userId=" + friendId
         );
-        console.log(res);
+        setUser(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -27,7 +29,7 @@ function Conversation({ conversation, currentUser }) {
         alt="user-icon"
         className="conversation-img"
       />
-      <span className="conversation-name">John Doe</span>
+      <span className="conversation-name">{user?.username}</span>
     </div>
   );
 }

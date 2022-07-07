@@ -1,18 +1,21 @@
 footer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
 
     width: 100vw;
-    height: 300px;
     margin: 0 auto 0;
-    padding-top: 50px;
+    padding: 50px 0 150px;
 
     text-align: left;
 
     color: #f3f3f3;
     background-color: #383838;
+
+    @media screen and (max-width: 830px) {
+        flex-direction: column;
+        padding: 50px;
+    }
 
     h6 {
         margin-bottom: 15px;
@@ -40,11 +43,19 @@ footer {
         text-align: right;
 
         img {
-            width: 250px;
+            width: 220px;
+
+            @media screen and (max-width: 830px) {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media screen and (max-width: 830px) {
+            text-align: left;
         }
     }
 
-    .footer-profile-box {
+    .footer-profile-box, .footer-albums-box, .footer-general-box {
         min-width: 120px;
         max-width: 300px;
     }

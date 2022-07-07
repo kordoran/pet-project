@@ -20,11 +20,11 @@ function Dropdown() {
       >
         <li>
           <Link
-            to="/messenger"
-            className="dropdown-nav-item"
+            to="/all-items"
+            className="dropdown-nav-item hidden"
             onClick={() => setDropdown(false)}
           >
-            Üzenetek
+            Lemezek
           </Link>
         </li>
         <li>
@@ -34,6 +34,15 @@ function Dropdown() {
             onClick={() => setDropdown(false)}
           >
             Profilom
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/messenger"
+            className="dropdown-nav-item"
+            onClick={() => setDropdown(false)}
+          >
+            Üzenetek
           </Link>
         </li>
         <li>

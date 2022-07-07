@@ -16,9 +16,12 @@
 
         .message-text {
             padding: 10px;
-            border-radius: 20px;
-            max-width: 300px;
-            background-color: #fff;
+            border-radius: 5px;
+            max-width: 450px;
+
+            text-align: left;
+            color: #2d2d2d;
+            background-color: #efefef
         }
     }
 
@@ -41,7 +44,8 @@
         }
 
         .message-text {
-            background-color: rgb(183, 176, 255);
+            color: rgb(255, 247, 224);
+            background-color: #e83a00;
         }
     }
 
