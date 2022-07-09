@@ -1,137 +1,134 @@
 .item-page-content {
-    margin-top: 70px;
-    padding-bottom: 50px;
+  margin-top: 70px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5vw;
+  justify-content: center;
+  align-self: center;
+
+  @media screen and (max-width: 1245px) {
+    flex-direction: column-reverse;
+  }
+
+  .item-page-left-container {
+    img.album-cover {
+      height: 500px;
+      width: 500px;
+
+      @media screen and (max-width: 1245px) {
+        width: 50vw;
+        height: 50vw;
+      }
+    }
+  }
+
+  .item-page-right-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10vw;
-    justify-content: center;
-    align-self: center;
+    flex-direction: column;
+    gap: 10px;
+    text-align: right;
+    color: #fff;
+
+    h1 {
+      font-size: 65px;
+      font-weight: 400;
+      font-family: "Arvo", serif;
+    }
+
+    h3 {
+      font-weight: 300;
+      font-size: 40px;
+    }
+
+    h5 {
+      font-weight: 400;
+      font-size: 25px;
+    }
+
+    div.type-tag {
+      flex-direction: row;
+      display: flex;
+      justify-content: flex-end;
+      text-transform: uppercase;
+
+      margin-bottom: 15px;
+
+      p {
+        padding: 5px;
+        align-self: flex-end;
+
+        border-radius: 5px;
+        color: #969696;
+        background-color: #fff;
+      }
+
+      @media screen and (max-width: 1245px) {
+        justify-content: center;
+      }
+    }
+
+    .send-msg-container {
+      flex-direction: row;
+      display: flex;
+      justify-content: flex-end;
+      text-transform: uppercase;
+
+      button {
+        align-self: flex-end;
+        padding: 7px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #b02c00;
+
+        &:hover {
+          background-color: #df3800;
+        }
+      }
+
+      @media screen and (max-width: 1245px) {
+        justify-content: center;
+      }
+    }
+
+    .price-text {
+      margin: 15px 0 15px;
+      font-size: 30px;
+      font-family: "Arvo", serif;
+    }
+
+    div.isavailable-tiles {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      text-transform: uppercase;
+      cursor: default;
+
+      .available-box {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #00b061;
+      }
+
+      .unavailable-box {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #b61535;
+      }
+
+      @media screen and (max-width: 1245px) {
+        justify-content: center;
+      }
+
+      @media screen and (max-width: 780px) {
+        flex-direction: column;
+        align-self: center;
+        width: 300px;
+      }
+    }
 
     @media screen and (max-width: 1245px) {
-        flex-direction: column-reverse;
+      text-align: center;
     }
-    
-    .item-page-left-container {
-        img.album-cover {
-            height: 500px;
-            width: 500px;
-
-            @media screen and (max-width: 1245px) {
-                width: 50vw;
-                height: 50vw;
-            }
-        }
-
-    }
-
-    .item-page-right-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        text-align: right;
-        color: #fff;
-
-        h1 {
-            font-size: 65px;
-            font-weight: 400;
-            font-family: "Arvo", serif;
-        }
-        
-        h3 {
-            font-weight: 300;
-            font-size: 40px;
-        }
-        
-        h5 {
-            font-weight: 400;
-            font-size: 25px;
-        }
-        
-        div.type-tag {
-            flex-direction: row;
-            display: flex;
-            justify-content: flex-end;
-            text-transform: uppercase;
-
-            margin-bottom: 15px;
-            
-            p {
-                padding: 5px;
-                align-self: flex-end;
-                
-                border-radius: 5px;
-                color: #969696;
-                background-color: #fff;
-            }
-
-            @media screen and (max-width: 1245px) {
-                justify-content: center;
-            }
-        }
-
-        .send-msg-container {
-            flex-direction: row;
-            display: flex;
-            justify-content: flex-end;
-            text-transform: uppercase;
-
-
-            button {
-                align-self: flex-end;
-                padding: 7px;
-                border-radius: 5px;
-                color: #fff;
-                background-color: #b02c00;
-
-                &:hover {
-                    background-color: #df3800;
-                }
-            }
-
-            @media screen and (max-width: 1245px) {
-                justify-content: center;
-            }
-        }
-        
-        .price-text {
-            margin: 15px 0 15px;
-            font-size: 30px;
-            font-family: "Arvo", serif;
-        }
-
-
-        div.isavailable-tiles {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            text-transform: uppercase;
-            cursor: default;
-
-            .available-box {
-                padding: 10px;
-                border-radius: 5px;
-                background-color: #00b061;
-            }
-            
-            .unavailable-box {
-                padding: 10px;
-                border-radius: 5px;
-                background-color: #b61535;
-            }
-
-            @media screen and (max-width: 1245px) {
-                justify-content: center;
-            }
-
-            @media screen and (max-width: 780px) {
-                flex-direction: column;
-                align-self: center;
-                width: 300px;
-            }
-        }
-
-        @media screen and (max-width: 1245px) {
-            text-align: center;
-        }
-    }
+  }
 }

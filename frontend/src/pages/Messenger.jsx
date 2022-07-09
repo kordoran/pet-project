@@ -99,7 +99,11 @@ const Messenger = () => {
               </div>
             </>
           ) : (
-            <span>Válassz egy beszélgetést a bal oldali sávból</span>
+            <h4 className="no-msg-select">
+              Kezdeményezz beszélgetést az adott termék oldalán, az{" "}
+              <span>Üzenet a hirdetőnek</span> gombra kattintva, vagy válassz a
+              bal oldali sávból
+            </h4>
           )}
         </div>
       </div>

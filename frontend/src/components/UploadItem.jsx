@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import message from "./SlideInMsg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./UploadItem.scss";
 
@@ -19,7 +20,6 @@ const UploadItem = () => {
   const [price, setPrice] = useState("");
   const [coverURL, setCoverURL] = useState("");
   const [UPC, setUPC] = useState("");
-  // const [dateOfUpdate, setDateOfUpdate] = useState("");
   const [shippingAvailable, setShippingAvailable] = useState(false);
   const [personalExchangeAvailable, setPersonalExchangeAvailable] =
     useState(false);
@@ -73,6 +73,7 @@ const UploadItem = () => {
         body: JSON.stringify(item),
       });
       setMyItems([...myItems], res.data);
+      message(`Sikeres feltöltés!`);
     } catch (error) {
       console.log(error);
     }

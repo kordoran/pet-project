@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Roboto:wght@100;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  text-decoration: none;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a img {
+  border: none;
+}
+
+button,
+a {
+  cursor: pointer;
+  color: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button,
+input,
+textarea,
+select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border-radius: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f1f1f1;
+}
+
+#message-container {
+  position: fixed;
+  left: 20px;
+  top: 60px;
+  z-index: 100;
+
+  .message {
+    max-width: 300px;
+
+    margin-top: 10px;
+    padding: 12px 30px;
+    border-right: 5px solid #b02c00;
+    background-color: #ee4c1c;
+
+    font-size: 1em;
+    font-weight: 500;
+    color: #fff8e8;
+
+    transform: translateX(0px);
+    transition: transform 500ms ease-in-out;
+  }
+
+  .message.message-hidden {
+    transform: translateX(-300px);
+  }
+}

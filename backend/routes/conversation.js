@@ -1,9 +1,10 @@
 const router = require("express").Router();
+const auth = require("../middlewares/auth");
 const Conversation = require("../models/conversation");
 
 // new conversation
 
-router.post("/", async (req, res) => {
+router.post("/", auth({ block: true }), async (req, res) => {
   const newConversation = new Conversation({
     members: [req.body.senderId, req.body.receiverId],
   });

@@ -17,7 +17,7 @@ const itemSchema = new mongoose.Schema({
   },
   shippingAvailable: Boolean,
   personalExchangeAvailable: Boolean,
-  isFrozen: { type: Boolean, default: false },
+  //  isFrozen: { type: Boolean, default: false },
 });
 
 const Item = mongoose.model("Item", itemSchema);

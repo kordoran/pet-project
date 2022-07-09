@@ -4,17 +4,6 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
 const config = require("../app.config");
-//const http = httpModule();
-
-/* router.get("/", auth({ block: false }), async (req, res) => {
-  console.log("item route: ", req.locals);
-  const user = await User.findById(res.locals.user.userId);
-  res.json({ user });
-
-            needs auth middleware
-        find user with userid from res.locals.userid
-        get all dashboards for user
-}); */
 
 router.get("/", async (req, res) => {
   const userId = req.query.userId;
@@ -64,7 +53,6 @@ router.post("/login", auth({ block: false }), async (req, res) => {
   let openId;
   const onlyOauth = !response.data.id_token;
   if (onlyOauth) {
-    //let accesstoken = response.data.split("=")[1].split("&")[0];
     let accesstoken = response.data.access_token;
     console.log(accesstoken);
 
@@ -73,7 +61,6 @@ router.post("/login", auth({ block: false }), async (req, res) => {
         authorization: "Bearer " + accesstoken,
       },
     });
-    //console.log(response.data);
 
     if (!userResponse) return res.sendStatus(500);
     if (userResponse.status !== 200) return res.sendStatus(401);

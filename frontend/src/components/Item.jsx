@@ -21,17 +21,27 @@ const Item = ({
   personalExchangeAvailable,
   isFrozen,
 }) => {
-  const { user, token } = useAuth();
+  const { user, token, logout } = useAuth();
   let navigate = useNavigate();
+
   const sendMessage = async (senderId, receiverId) => {
     try {
-      await axios.post("http://localhost:4000/api/conversations", {
-        senderId: senderId,
-        receiverId: receiverId,
-      });
+      await axios.post(
+        "http://localhost:4000/api/conversations",
+        {
+          senderId: senderId,
+          receiverId: receiverId,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       navigate("/messenger");
     } catch (error) {
       console.log(error);
+      logout();
     }
   };
 
@@ -39,11 +49,13 @@ const Item = ({
     <div className="item-page-content">
       <div className="item-page-left-container">
         <img src={coverURL} className="album-cover" alt="album cover" />
-        {isFrozen && <div className="frozen">Jegelve</div>}
+        {/* {isFrozen && <div className="frozen">Jegelve</div>} */}
       </div>
       <div className="item-page-right-container">
-        <h1>{albumTitle}</h1>
-        <h3>{artist}</h3>
+        <h1 style={{ fontSize: albumTitle.length > 20 && "25px" }}>
+          {albumTitle}
+        </h1>
+        <h3 style={{ fontSize: albumTitle.length > 20 && "25px" }}>{artist}</h3>
         <h5>{releaseYear}</h5>
         <div className="type-tag">
           <p>{itemType}</p>
@@ -55,7 +67,7 @@ const Item = ({
             </button>
           </div>
         )}
-        <p className="item-page-subtext">Feltöltötte: {user_id}</p>
+        {/* <p className="item-page-subtext">Feltöltötte: {user_id}</p> */}
         <p className="item-page-subtext">
           Feltöltés dátuma: {dateOfUpdate.slice(0, 10)}
         </p>

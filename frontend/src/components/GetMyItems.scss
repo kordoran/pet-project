@@ -26,6 +26,14 @@
 
         background-color: #cbcac4;
 
+        p {
+          white-space: nowrap;
+          width: 100%;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+        }
+
         .card-content {
           position: absolute;
           top: 20px;

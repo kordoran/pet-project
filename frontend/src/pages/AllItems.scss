@@ -1,6 +1,46 @@
 .all-items-page {
+  margin-top: 65px;
+
+  .search-container {
     display: flex;
     justify-content: center;
-    margin-top: 75px;
-    width: 100vw;
+    align-items: center;
+    padding: 10px;
+    max-height: 125px;
+    gap: 20px;
+
+    background-color: #ee4c1c;
+
+    input {
+      width: 450px;
+      height: 40px;
+      padding: 15px 20px;
+      border-radius: 5px;
+
+      font-size: 15px;
+
+      background-color: #fff;
+
+      @media screen and (max-width: 560px) {
+        width: 75vw;
+      }
+    }
+
+    .search-btn {
+      padding: 10px 20px;
+      width: 100px;
+      height: 40px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #ee4c1c;
+      }
+    }
+
+    @media screen and (max-width: 725px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }
