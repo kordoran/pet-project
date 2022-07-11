@@ -5,10 +5,6 @@ import { useAuth } from "../providers/auth";
 const Protected = ({ children }) => {
   const { token, user } = useAuth();
   const location = useLocation();
-  //console.log(location);
-
-  console.log("token:", token);
-  console.log("user:", token);
 
   return (
     <>

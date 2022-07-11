@@ -10,14 +10,19 @@ const Messenger = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const scrollRef = useRef();
 
   useEffect(() => {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/conversations/" + user.userId
+          "http://localhost:4000/api/conversations/" + user.userId,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         setConversations(res.data);
       } catch (error) {
@@ -25,13 +30,18 @@ const Messenger = () => {
       }
     };
     getConversations();
-  }, [user.userId]);
+  }, [user.userId, token]);
 
   useEffect(() => {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/messages/" + currentChat?._id
+          "http://localhost:4000/api/messages/" + currentChat?._id,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         setMessages(res.data);
       } catch (error) {
@@ -39,7 +49,7 @@ const Messenger = () => {
       }
     };
     getMessages();
-  }, [currentChat]);
+  }, [currentChat, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +62,12 @@ const Messenger = () => {
     try {
       const res = await axios.post(
         "http://localhost:4000/api/messages",
-        message
+        message,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       setMessages([...messages], res.data);
     } catch (error) {

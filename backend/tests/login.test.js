@@ -1,9 +1,7 @@
 require("dotenv").config();
 const app = require("../app");
 const mockserver = require("supertest");
-const mongoose = require("mongoose");
 const User = require("../models/user.js");
-const { MongoMemoryServer } = require("mongodb-memory-server");
 const { startDb, stopDb, deleteAll } = require("./utils/inMemoryDb");
 const jwt = require("jsonwebtoken");
 const {
@@ -29,7 +27,7 @@ describe("/api/user/login tests", () => {
     await stopDb(server, connection);
   });
 
-  test("1. should return 400 without body", async () => {
+  test("1. testing client gets 400, when trying to post without body", async () => {
     // given
 
     // when
@@ -39,7 +37,7 @@ describe("/api/user/login tests", () => {
     expect(response.status).toBe(400);
   });
 
-  test("2. should return 400 without provider body", async () => {
+  test("2. testing client gets 400, when trying to post login without provider body", async () => {
     // given
     const code = "random";
 
@@ -52,7 +50,7 @@ describe("/api/user/login tests", () => {
     expect(response.status).toBe(400);
   });
 
-  test("3. should return 400 without code data", async () => {
+  test("3. testing client gets 400, when trying to post login without code data", async () => {
     // given
 
     const provider = "github";
@@ -66,7 +64,7 @@ describe("/api/user/login tests", () => {
     expect(response.status).toBe(400);
   });
 
-  test("4. should return 400 with invalid provider, user not created", async () => {
+  test("4. testing client with invalid provider gets 400, when trying to post login with user not created", async () => {
     // given
     const code = "random";
     const provider = "gogggls";
@@ -81,7 +79,7 @@ describe("/api/user/login tests", () => {
     expect(response.status).toBe(400);
   });
 
-  test("5. should return jwt and 200 with valid body data, user not created", async () => {
+  test("5. testing client with valid body data gets 200, when trying to post login with user not created", async () => {
     // given
     const code = "random";
     const provider = "google";
@@ -102,7 +100,7 @@ describe("/api/user/login tests", () => {
     expect(users).toStrictEqual([]);
   });
 
-  test("6. should return 401 with invalid code", async () => {
+  test("6. testing client with invalid code gets 401", async () => {
     // given
     const code = "random";
     const provider = "google";

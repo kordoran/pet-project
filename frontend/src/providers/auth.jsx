@@ -60,13 +60,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("username");
   };
 
-  /*   useEffect(() => {
-    if (token) {
-      const decoded = jwt(token);
-      if (decoded.exp * 1000 < new Date().getTime()) logout();
-    }
-  }, [token]); */
-
   const register = async (username, currentCity) => {
     console.log("Run");
     const response = await post("/user/create", { username, currentCity });

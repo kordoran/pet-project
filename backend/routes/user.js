@@ -5,7 +5,9 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
 const config = require("../app.config");
 
-router.get("/", async (req, res) => {
+// get user by userId/username
+
+router.get("/", auth({ block: true }), async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
 
@@ -19,6 +21,8 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// send login
 
 router.post("/login", auth({ block: false }), async (req, res) => {
   const payload = req.body;
@@ -73,15 +77,6 @@ router.post("/login", auth({ block: false }), async (req, res) => {
   }
 
   const key = "providers." + provider;
-  /*ha nem akarnánk mergelni
-        let user = await User.findOneAndUpdate({
-        [key]: openId,
-    }, {
-        providers: {
-            [provider]: openId,
-        },
-    }, { new: true, upsert: true });
-    */
 
   let user = await User.findOne({ [key]: openId });
 
@@ -89,7 +84,6 @@ router.post("/login", auth({ block: false }), async (req, res) => {
     user.providers = { ...user.providers, ...res.locals.user.providers };
     user = await user.save();
   }
-  /* user, user._id : null = user?._id optional chaining */
 
   const token = jwt.sign(
     {
@@ -102,6 +96,8 @@ router.post("/login", auth({ block: false }), async (req, res) => {
 
   res.json({ token });
 });
+
+// create user
 
 router.post("/create", auth({ block: true }), async (req, res) => {
   if (!req.body?.username) return res.sendStatus(400);

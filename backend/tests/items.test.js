@@ -1,14 +1,12 @@
 require("dotenv").config();
 const app = require("../app");
 const mockserver = require("supertest");
-const mongoose = require("mongoose");
 const User = require("../models/user.js");
 const Item = require("../models/item.js");
-const { MongoMemoryServer } = require("mongodb-memory-server");
 const { startDb, stopDb, deleteAll } = require("./utils/inMemoryDb");
 const jwt = require("jsonwebtoken");
 
-describe("/api/items get tests", () => {
+describe("/api/items tests", () => {
   let connection;
   let server;
   let client;
@@ -26,7 +24,7 @@ describe("/api/items get tests", () => {
     await stopDb(server, connection);
   });
 
-  test("1. testing client gets all items without token from /items", async () => {
+  test("1. testing client without token gets 200, when trying to get all items", async () => {
     // given
     const filter = {};
     const allItems = await Item.find(filter);
@@ -39,7 +37,7 @@ describe("/api/items get tests", () => {
     expect(response.status).toBe(200);
   });
 
-  test("2. testing client without token receives 401, when trying to get own items", async () => {
+  test("2. testing client without token gets 401, when trying to get own items", async () => {
     // given
     const myItems = await Item.find({
       user_id: 12345678,
@@ -53,7 +51,7 @@ describe("/api/items get tests", () => {
     expect(response.status).toBe(401);
   });
 
-  test("3. testing client without token receives 401, when trying to post new item", async () => {
+  test("3. testing client without token gets 401, when trying to post new item", async () => {
     // given
     const newItem = new Item({
       user_id: User._id,
@@ -79,7 +77,7 @@ describe("/api/items get tests", () => {
     expect(response.status).toBe(401);
   });
 
-  test("4. testing client with token can post new Item to /items, gets back 200", async () => {
+  test("4. testing client with token gets 200, when trying to post new Item", async () => {
     // given
     const newItem = new Item({
       user_id: User._id,
@@ -106,21 +104,7 @@ describe("/api/items get tests", () => {
     expect(response.status).toBe(200);
   });
 
-  /*  test("3. testing user without token deletes item receives 401", async () => {
-    // given
-    const _id = Item._id;
-    await Item.findByIdAndRemove(_id);
-    client.set("");
-
-    // when
-    const response = await client.delete("/api/items/delete/:id");
-
-    // then
-    expect(response.status).toBe(401);
-    expect(response.body).toStrictEqual({});
-  }); */
-
-  test("5. testing user with token receives 200, gets own items", async () => {
+  test("5. testing user with token gets 200, when trying to get own items", async () => {
     // given
     const myItems = await Item.find({
       user_id: 12345678,
@@ -134,37 +118,4 @@ describe("/api/items get tests", () => {
     // then
     expect(response.status).toBe(200);
   });
-
-  /* test("new user gets empty list", async () => {
-    // given
-    const newUser = new User({ username: "bob", googleId: "1234567" });
-    await newUser.save();
-    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET);
-    client.set("authorization", token);
-
-    // when
-    const response = await client.get("/api/items");
-
-    // then
-    expect(response.status).toBe(200);
-    const responseData = response.body;
-    expect(responseData.user.dashboards).toStrictEqual([]);
-  }); */
-
-  /*   test("deleted user receives null", async () => {
-    // given
-    const newUser = new User({ username: "bob", googleId: "1234567" });
-    await newUser.save();
-    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET);
-    client.set("authorization", token);
-    await User.deleteMany();
-
-    // when
-    const response = await client.get("/api/items");
-
-    // then
-    const responseData = response.body;
-    expect(response.status).toBe(200);
-    expect(responseData.user).toBeNull();
-  }); */
 });

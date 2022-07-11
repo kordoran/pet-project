@@ -2,6 +2,8 @@ const router = require("express").Router();
 const auth = require("../middlewares/auth");
 const Item = require("../models/item");
 
+// get all items
+
 router.get("/", async (req, res) => {
   try {
     const filter = {};
@@ -12,6 +14,8 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// post new item
 
 router.post("/", auth({ block: true }), async (req, res) => {
   const userId = req.res.locals.user.userId;
@@ -41,6 +45,8 @@ router.post("/", auth({ block: true }), async (req, res) => {
   }
 });
 
+// get all items by a user
+
 router.get("/:user_id", auth({ block: true }), async (req, res) => {
   try {
     const myItems = await Item.find({
@@ -52,6 +58,8 @@ router.get("/:user_id", auth({ block: true }), async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// delete one item of a user
 
 router.delete("/delete/:id", auth({ block: true }), async (req, res) => {
   try {

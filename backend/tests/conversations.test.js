@@ -1,14 +1,11 @@
 require("dotenv").config();
 const app = require("../app");
 const mockserver = require("supertest");
-const mongoose = require("mongoose");
 const Conversation = require("../models/conversation.js");
-const Item = require("../models/item.js");
-const { MongoMemoryServer } = require("mongodb-memory-server");
 const { startDb, stopDb, deleteAll } = require("./utils/inMemoryDb");
 const jwt = require("jsonwebtoken");
 
-describe("/api/conversations get tests", () => {
+describe("/api/conversations tests", () => {
   let connection;
   let server;
   let client;
@@ -19,7 +16,7 @@ describe("/api/conversations get tests", () => {
   });
 
   afterEach(async () => {
-    await deleteAll(Item);
+    await deleteAll(Conversation);
   });
 
   afterAll(async () => {
@@ -43,7 +40,21 @@ describe("/api/conversations get tests", () => {
     expect(response.status).toBe(401);
   });
 
-  test("2. testing client gets 200, when trying to post new conversation with token", async () => {
+  test("2. testing client gets 401, when trying to get a conversation without token", async () => {
+    // given
+    const conversation = await Conversation.find({
+      members: { $in: [12345678] },
+    });
+    client.set(conversation);
+
+    // when
+    const response = await client.get("/api/conversations/:userId");
+
+    // then
+    expect(response.status).toBe(401);
+  });
+
+  test("3. testing client gets 200, when trying to post new conversation with token", async () => {
     // given
     const senderId = 123456;
     const receiverId = 112233;
@@ -56,6 +67,21 @@ describe("/api/conversations get tests", () => {
 
     // when
     const response = await client.post("/api/conversations");
+
+    // then
+    expect(response.status).toBe(200);
+  });
+
+  test("4. testing client gets 200, when trying to get a conversation with token", async () => {
+    // given
+    const conversation = await Conversation.find({
+      members: { $in: [12345678] },
+    });
+    const token = jwt.sign({ userId: 12345678 }, process.env.JWT_SECRET);
+    client.set("authorization", token, conversation);
+
+    // when
+    const response = await client.get("/api/conversations/:userId");
 
     // then
     expect(response.status).toBe(200);

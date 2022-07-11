@@ -1,0 +1,318 @@
+swagger: "2.0"
+info:
+  description: "This is the Swagger documentation for HangborzeAPI."
+  version: "1.0.0"
+  title: "Hangborze API"
+  contact:
+    email: "andorkorcsog@gmail.com"
+host: "localhost:4000"
+basePath: "/"
+tags:
+  - name: "items"
+    description: "Everything about your items"
+  - name: "conversations"
+    description: "Access to conversations with other users"
+  - name: "messages"
+    description: "Access to messages with other users"
+  - name: "user"
+    description: "Operations about user"
+schemes:
+  - "http"
+paths:
+  /items/:
+    post:
+      tags:
+        - "items"
+      summary: "Add a new item to the store"
+      description: "Add a new record to sell online"
+      operationId: "addItem"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Item object that needs to be added to the database"
+          required: true
+          schema:
+            $ref: "#/definitions/Item"
+      responses:
+        "200":
+          description: "Success"
+        "401":
+          description: "Success"
+        "500":
+          description: "Server error"
+  /items:
+    get:
+      tags:
+        - "items"
+      summary: "Get all items"
+      description: "Returns all items"
+      operationId: "getAllItems"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Id"
+          in: "path"
+          schema:
+            $ref: "#/definitions/Item"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Item"
+        "500":
+          description: "Server error"
+  /items/delete/{itemId}:
+    delete:
+      tags:
+        - "items"
+      summary: "User deletes an item"
+      description: "User can delete a previously uploaded record that has been sold or no longer needed to be present in the database"
+      operationId: "deleteItem"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "itemId"
+          in: "path"
+          description: "Item id to delete"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "Item with ID deleted"
+        "500":
+          description: "Server error"
+  /conversations/{userId}:
+    get:
+      tags:
+        - "conversations"
+      summary: "Returns conversation of a user"
+      description: ""
+      operationId: "getConversation"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Conversation"
+        "500":
+          description: "Server error"
+  /conversations:
+    post:
+      tags:
+        - "conversations"
+      summary: "Creates a conversation with members"
+      description: ""
+      operationId: "createConversation"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Conversation started between members"
+          required: true
+          schema:
+            $ref: "#/definitions/Conversation"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Conversation"
+        "500":
+          description: "Server error"
+  /messages:
+    post:
+      tags:
+        - "messages"
+      summary: "Creates a message"
+      description: ""
+      operationId: "createMessage"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Message between users"
+          required: true
+          schema:
+            $ref: "#/definitions/Message"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Message"
+        "500":
+          description: "Server error"
+  /messages/{conversationId}:
+    get:
+      tags:
+        - "messages"
+      summary: "Get message of a conversation"
+      description: ""
+      operationId: "getMessage"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "conversationId"
+          in: "path"
+          description: "ID of conversation, that needs to be fetched"
+          schema:
+            $ref: "#/definitions/Message"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Message"
+        "500":
+          description: "Server error"
+  /user/create:
+    post:
+      tags:
+        - "user"
+      summary: "Create user"
+      operationId: "createUser"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created user object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+  /user/login:
+    post:
+      tags:
+        - "user"
+      summary: "Login user"
+      operationId: "loginUser"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Login with user"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+  /user/{userId}:
+    get:
+      tags:
+        - "user"
+      summary: "Get user by user ID"
+      description: ""
+      operationId: "getUserByID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: "The ID of the user"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid userId supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Server error"
+definitions:
+  Item:
+    type: "object"
+    properties:
+      _id:
+        type: "integer"
+        format: "int64"
+      user_id:
+        type: "integer"
+        format: "int64"
+      itemType:
+        type: "string"
+      artist:
+        type: "string"
+      albumTitle:
+        type: "string"
+      releaseYear:
+        type: "string"
+      recordLabel:
+        type: "string"
+      placeOfUpdate:
+        type: "string"
+      price:
+        type: "integer"
+        format: "int32"
+      coverURL:
+        type: "string"
+      UPC:
+        type: "integer"
+        format: "int32"
+      dateOfUpdate:
+        type: "string"
+        format: "date-time"
+      shippingAvailable:
+        type: "boolean"
+        default: false
+      personalExchangeAvailable:
+        type: "boolean"
+        default: false
+  User:
+    type: "object"
+    properties:
+      _id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      providers:
+        type: "object"
+        properties:
+          google:
+            type: "string"
+      currentCity:
+        type: "string"
+    xml:
+      name: "User"
+  Conversation:
+    type: "object"
+    properties:
+      _id:
+        type: "integer"
+        format: "int64"
+      members:
+        type: "array"
+    xml:
+      name: "Conversation"
+  Message:
+    type: "object"
+    properties:
+      conversationId:
+        type: "string"
+      sender:
+        type: "string"
+      text:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

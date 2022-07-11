@@ -1,10 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
+import { useAuth } from "../providers/auth";
 import "./Conversation.scss";
 
 function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
+  const { token } = useAuth();
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser.userId);
@@ -12,7 +14,12 @@ function Conversation({ conversation, currentUser }) {
     const getUser = async () => {
       try {
         const res = await axios(
-          "http://localhost:4000/api/user?userId=" + friendId
+          "http://localhost:4000/api/user?userId=" + friendId,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         setUser(res.data);
       } catch (error) {
@@ -20,7 +27,7 @@ function Conversation({ conversation, currentUser }) {
       }
     };
     getUser();
-  }, [currentUser, conversation]);
+  }, [currentUser, conversation, token]);
 
   return (
     <div className="conversation">

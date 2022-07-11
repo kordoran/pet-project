@@ -6,12 +6,16 @@ import GetMyItems from "../components/GetMyItems";
 import "./Profile.scss";
 
 const Profile = () => {
-  const { user } = useAuth();
-  // useEffect(() => {
+  const { user, token } = useAuth();
   const getUser = async () => {
     try {
       const res = await axios(
-        "http://localhost:4000/api/user?userId=" + user.userId
+        "http://localhost:4000/api/user?userId=" + user.userId,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       const username = res.data.username;
       localStorage.setItem("username", username);
@@ -20,7 +24,6 @@ const Profile = () => {
     }
   };
   getUser();
-  //  }, []);
 
   return (
     <div className="profile">
