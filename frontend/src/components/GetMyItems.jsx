@@ -49,14 +49,12 @@ const GetMyItems = () => {
     message(`Feltöltés sikeresen törölve.`);
   };
 
-  console.log(myItems);
-
   return (
     <section className="my-items">
       <h2>Saját feltöltéseim</h2>
       <div className="my-items-container">
-        {myItems === [] ? (
-          <p>Nincs saját feltöltésed.</p>
+        {myItems.length === 0 ? (
+          <p className="no-items-text">Nincs saját feltöltésed.</p>
         ) : (
           myItems.map((item) => (
             <div className="item" key={item._id} id={item._id}>

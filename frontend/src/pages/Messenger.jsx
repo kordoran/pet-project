@@ -70,21 +70,22 @@ const Messenger = () => {
         }
       );
       setMessages([...messages], res.data);
+      setNewMessage("");
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages]);
 
   return (
     <section className="messenger">
       <div className="chat-menu">
         <div className="chat-menu-wrapper">
-          {conversations.map((c) => (
-            <div onClick={() => setCurrentChat(c)}>
+          {conversations.map((c, i) => (
+            <div onClick={() => setCurrentChat(c)} key={i}>
               <Conversation conversation={c} currentUser={user} />
             </div>
           ))}

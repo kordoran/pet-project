@@ -15,6 +15,14 @@
 
     margin: 20px 150px 80px;
 
+    .no-items-text {
+      position: relative;
+      left: -115px;
+
+      font-size: 20px;
+      font-weight: 300;
+    }
+
     .item {
       .card {
         position: relative;
@@ -154,6 +162,12 @@
           background-color: #b02c00;
         }
       }
+    }
+
+    @media screen and (max-width: 1310px) {
+      justify-content: center;
+      max-width: initial;
+      margin: 0 auto 50px;
     }
   }
 }

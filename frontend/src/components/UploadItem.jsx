@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../providers/auth";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
@@ -23,6 +24,7 @@ const UploadItem = () => {
   const [shippingAvailable, setShippingAvailable] = useState(false);
   const [personalExchangeAvailable, setPersonalExchangeAvailable] =
     useState(false);
+  const location = useLocation();
 
   const theme = createTheme({
     palette: {
@@ -73,6 +75,17 @@ const UploadItem = () => {
         body: JSON.stringify(item),
       });
       setMyItems([...myItems], res.data);
+      setItemType("Vinyl LP");
+      setArtist("");
+      setAlbumTitle("");
+      setReleaseYear("");
+      setRecordLabel("");
+      setPlaceOfRelease("");
+      setPrice("");
+      setCoverURL("");
+      setUPC("");
+      setShippingAvailable(false);
+      setPersonalExchangeAvailable(false);
       message(`Sikeres feltöltés!`);
     } catch (error) {
       console.log(error);

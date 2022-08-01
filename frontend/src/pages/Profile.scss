@@ -1,24 +1,26 @@
 .profile {
-    margin: 65px auto 5px;
-    min-height: 1000px;
-    header.profile-header {
-        display: flex;
-        align-items: center;
-        padding: 35px;
-        height: 200px;
+  margin: 65px auto 5px;
+  min-height: 1000px;
+  header.profile-header {
+    display: flex;
+    align-items: center;
+    padding: 35px;
+    height: 200px;
 
-        background-color: #ee4c1c;
+    background: linear-gradient(
+      90deg,
+      rgba(176, 44, 0, 1) 12%,
+      rgba(176, 44, 0, 1) 38%,
+      rgba(238, 76, 28, 1) 120%
+    );
 
+    h2 {
+      margin-top: 15px;
+      text-align: left;
+      font-size: 35px;
+      font-family: "Arvo", serif;
 
-        h2 {
-            margin-top: 15px;
-            text-align: left;
-            font-size: 35px;
-            font-family: "Arvo", serif;
-
-
-            color: #f5f5dc;
-        }
+      color: #f5f5dc;
     }
-
+  }
 }

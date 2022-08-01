@@ -19,7 +19,6 @@ const Item = ({
   dateOfUpdate,
   shippingAvailable,
   personalExchangeAvailable,
-  isFrozen,
 }) => {
   const { user, token, logout } = useAuth();
   let navigate = useNavigate();
@@ -49,7 +48,6 @@ const Item = ({
     <div className="item-page-content">
       <div className="item-page-left-container">
         <img src={coverURL} className="album-cover" alt="album cover" />
-        {/* {isFrozen && <div className="frozen">Jegelve</div>} */}
       </div>
       <div className="item-page-right-container">
         <h1 style={{ fontSize: albumTitle.length > 20 && "25px" }}>
@@ -67,12 +65,11 @@ const Item = ({
             </button>
           </div>
         )}
-        {/* <p className="item-page-subtext">Feltöltötte: {user_id}</p> */}
         <p className="item-page-subtext">
           Feltöltés dátuma: {dateOfUpdate.slice(0, 10)}
         </p>
         <p className="item-page-subtext">Lemezkiadó: {recordLabel}</p>
-        <p className="item-page-subtext">Kiadás (ország): {placeOfRelease}</p>
+        <p className="item-page-subtext">Kiadás helye: {placeOfRelease}</p>
         <p className="item-page-subtext">Vonalkód: {UPC}</p>
         <p className="price-text">{price} Ft</p>
         <div className="isavailable-tiles">

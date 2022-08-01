@@ -51,4 +51,9 @@
       background-color: #ee4c1c;
     }
   }
+
+  @media screen and (max-width: 1310px) {
+    position: static;
+    margin: 50px auto 0;
+  }
 }
